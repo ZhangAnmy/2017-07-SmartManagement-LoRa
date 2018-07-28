@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE struts PUBLIC
+            "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+            "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!--包配置 -->
+	<package name="default" extends="struts-default">
+		<!--指定Action要调用的方法为sayHello -->
+		<action name="userLogin" class="edu.hnu.csee.luo.action.UserLoginAction"
+			method="checkUserLogin">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/frames.jsp</result>
+			<result name="login">/success.jsp</result>
+		</action>
+
+		<action name="checkUserLogin" class="edu.hnu.csee.luo.action.UserLoginAction"
+			method="checkUserLogin">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/frames.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+
+
+		<action name="userQueryAll" class="edu.hnu.csee.luo.action.UserManageAction"
+			method="queryAllUser">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/usermanage.jsp</result>
+			<result name="login">/success.jsp</result>
+		</action>
+
+
+		<action name="userQuery" class="edu.hnu.csee.luo.action.UserManageAction"
+			method="queryUserInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/usermanage.jsp</result>
+			<result name="login">/success.jsp</result>
+		</action>
+
+		<action name="userEdit" class="edu.hnu.csee.luo.action.UserManageAction"
+			method="editUserInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/usermanage.jsp</result>
+			<result name="login">/success.jsp</result>
+		</action>
+
+		<action name="userDelete" class="edu.hnu.csee.luo.action.UserManageAction"
+			method="deleteUser">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/usermanage.jsp</result>
+			<result name="login">/success.jsp</result>
+		</action>
+
+		<action name="userAdd" class="edu.hnu.csee.luo.action.UserManageAction"
+			method="addUser">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/usermanage.jsp</result>
+			<result name="login">/success.jsp</result>
+		</action>
+		
+		<action name="userLoginDelete" class="edu.hnu.csee.luo.action.UserLoginAction"
+			method="deleteUserLogin">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/usermanage.jsp</result>
+			<result name="login">/success.jsp</result>
+		</action>
+
+		<action name="userLoginAdd" class="edu.hnu.csee.luo.action.UserLoginAction"
+			method="addUserLogin">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/usermanage.jsp</result>
+			<result name="login">/success.jsp</result>
+		</action>
+
+		<action name="PwdEdit" class="edu.hnu.csee.luo.action.UserPwdChangeAction"
+			method="editUserInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/usermanage.jsp</result>
+			<result name="login">/success.jsp</result>
+		</action>
+		
+		<action name="EditUser" class="edu.hnu.csee.luo.action.UserInfoChangeAction"
+			method="editUserInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/usermanage.jsp</result>
+			<result name="login">/success.jsp</result>
+		</action>
+
+		<action name="sensorNodeQuery" class="edu.hnu.csee.luo.action.SensorNodeManageAction"
+			method="querySensorNodesInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/nodemanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="sensorNodeDelete" class="edu.hnu.csee.luo.action.SensorNodeManageAction"
+			method="deleteSensorNode">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/nodemanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="sensorNodeEdit" class="edu.hnu.csee.luo.action.SensorNodeManageAction"
+			method="editSensorNodeInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/nodemanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="sensorNodeAdd" class="edu.hnu.csee.luo.action.SensorNodeManageAction"
+			method="addSensorNode">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/nodemanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="mapQueryAll" class="edu.hnu.csee.luo.action.EntityManageAction"
+			method="queryAllEntity">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/map.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="entityTreeQueryById" class="edu.hnu.csee.luo.action.EntityManageAction"
+			method="queryEntityTreeInfoById">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/entitymanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="entityQueryById" class="edu.hnu.csee.luo.action.EntityManageAction"
+			method="queryEntityInfoById">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/entitymanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+		
+		<action name="entityQuery" class="edu.hnu.csee.luo.action.EntityManageAction"
+			method="queryEntityInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/entityinfo.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="entityDelete" class="edu.hnu.csee.luo.action.EntityManageAction"
+			method="deleteEntity">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/entitymanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="entityEdit" class="edu.hnu.csee.luo.action.EntityManageAction"
+			method="editEntityInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/entitymanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="entityAdd" class="edu.hnu.csee.luo.action.EntityManageAction"
+			method="addEntity">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/entitymanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="maintainQueryEntity" class="edu.hnu.csee.luo.action.MaintainManageAction"
+			method="queryMaintainInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/entitydealnodeinfo.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="maintainQueryAll" class="edu.hnu.csee.luo.action.MaintainManageAction"
+			method="queryAllMaintain">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/dealnodeinfo.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="maintainQuery" class="edu.hnu.csee.luo.action.MaintainManageAction"
+			method="queryMaintainInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/dealnodeinfo.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="maintainEdit" class="edu.hnu.csee.luo.action.MaintainManageAction"
+			method="editMaintainInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/dealnodeinfo.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="maintainDelete" class="edu.hnu.csee.luo.action.MaintainManageAction"
+			method="deleteMaintain">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/dealnodeinfo.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="maintainAdd" class="edu.hnu.csee.luo.action.MaintainManageAction"
+			method="addMaintain">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/dealnodeinfo.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="departmentQueryAll" class="edu.hnu.csee.luo.action.DepartmentManageAction"
+			method="queryAllDepartments">
+			<result name="success">/departmanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="departmentQueryById" class="edu.hnu.csee.luo.action.DepartmentManageAction"
+			method="queryDepartmentById">
+			<result name="success">/departmanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="departmentQueryByName" class="edu.hnu.csee.luo.action.DepartmentManageAction"
+			method="queryDepartmentByName">
+			<result name="success">/departmanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="departmentAdd" class="edu.hnu.csee.luo.action.DepartmentManageAction"
+			method="addDepartment">
+			<result name="success">/departmanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="departmentDelete" class="edu.hnu.csee.luo.action.DepartmentManageAction"
+			method="deleteDepartment">
+			<result name="success">/departmanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="departmentEdit" class="edu.hnu.csee.luo.action.DepartmentManageAction"
+			method="editDepartmentInfo">
+			<result name="success">/departmanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+
+
+
+
+		<action name="treeQueryAll" class="edu.hnu.csee.luo.action.TreeManageAction"
+			method="queryAllTree">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/treeinfo.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="treeDelete" class="edu.hnu.csee.luo.action.TreeManageAction"
+			method="deleteTree">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/treemanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="treeEdit" class="edu.hnu.csee.luo.action.TreeManageAction"
+			method="editTreeInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/treemanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+		<action name="treeAdd" class="edu.hnu.csee.luo.action.TreeManageAction"
+			method="addTree">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success">/treemanage.jsp</result>
+			<result name="input">/success.jsp</result>
+		</action>
+
+
+	</package>
+	<package name="json" extends="json-default">
+		<action name="sensorNodeQueryAll" class="edu.hnu.csee.luo.action.SensorNodeManageAction"
+			method="queryAllSensorNode">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+
+		</action>
+		
+		<action name="entityQueryAll" class="edu.hnu.csee.luo.action.EntityManageAction"
+			method="queryAllEntity">
+			<!--为success的逻辑视图配置Result -->
+				<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		
+			<action name="nodeCollectDataQueryAll" class="edu.hnu.csee.luo.action.NodeCollectDataManageAction" method="queryAllNodeCollectDataInfo">
+			<!--为success的逻辑视图配置Result -->
+			<result name="success" type="json">
+				<param name="root">result</param>
+				</result>
+			</action>
+		
+				<action name="nodeCollectDataQueryMap"
+			class="edu.hnu.csee.luo.action.NodeCollectDataManageAction" method="queryNodeCollectDataDesc">
+
+					<result name="success" type="json">
+				<param name="root">result</param>
+				</result>
+		</action>
+
+			<action name="nodeCollectDataCountQuery"
+			class="edu.hnu.csee.luo.action.NodeCollectDataManageAction" method="queryNodeCollectDataCount">
+			
+					<result name="success" type="json">
+				<param name="root">result</param>
+				</result>
+		</action>
+		
+		
+		<action name="nodeCollectDataQuery"
+			class="edu.hnu.csee.luo.action.NodeCollectDataManageAction" method="queryNodeCollectData">
+			
+					<result name="success" type="json">
+				<param name="root">result</param>
+				</result>
+		</action>
+
+
+	
+
+		<action name="nodeHistoryDataCountQuery"
+			class="edu.hnu.csee.luo.action.NodeCollectDataManageAction" method="queryHistoryDataCount">
+			
+					<result name="success" type="json">
+				<param name="root">result</param>
+				</result>
+		</action>
+		
+		<action name="userQueryEntity" class="edu.hnu.csee.luo.action.UserManageAction"
+			method="queryUserEntity">
+					<result name="success" type="json">
+				<param name="root">result</param>
+				</result>
+		</action>
+	</package>
+</struts>
+        
+           
+     

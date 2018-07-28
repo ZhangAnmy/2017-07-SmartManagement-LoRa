@@ -1,0 +1,421 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	overflow: auto;
+	overflow-x: auto;
+	font-size: 12px;
+	background-color: #FDFDFD;
+	background-image: url.gif);
+	/*
+	background-position:bottom right;
+	background-repeat:no-repeat;
+	*/
+}
+
+td {
+	font-size: 12px;
+}
+
+.cssDataListTable {
+	width: 100%;
+	border: 0;
+}
+
+.cssScrollDiv {
+	width: 100%;
+	border: 1px solid #009999;
+}
+
+.cssScrollAdminGrid {
+	width: 100%;
+	border: 1px solid #009999;
+}
+
+.cssScrollAdminGrid td {
+	font-size: 12px;
+	border: 2px solid #FFFFFF;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.cssAdminGridTitle {
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 100%;
+}
+
+.cssAdminGrid {
+	margin-left: 5px;
+	width: 98%;
+	border: 1px solid #9192B7;
+	border-left: 2px solid #9192B7;
+	/*	background-color: #9192B7；*/
+	background-color: #F9F9F9;
+}
+
+.cssAdminGrid td {
+	font-size: 12px; /**/ /*	padding-left: 5px;*/
+	padding: 5px;
+	margin: 2px, 2px, 2px, 2px;
+	border-right: 1px solid #9192B7;
+	border-bottom: 1px solid #9192B7;
+	height: 25px;
+	/*	background-color: #F8F8F8;*/
+}
+
+.cssAdminGrid tr {
+	behavior: url(../jscript/datagrid.htc);
+}
+
+.cssAdminGridHead td {
+	background-image: url(img/gridtitle.jpg);
+	/*	background-color: #DDDDDD;*/
+	text-align: center;
+	font-size: 12px;
+	color: #000000;
+	white-space: nowrap;
+	height: 25px; /*	border-right: 3px inset #FFFFFF; 	border-bottom: 2px inset #EEEEEE; 	border-left: 3px inset #FFFFFF; 	background-image: url(img/gridtitle.gif);*/
+}
+.cssAdminGridHead1 td {
+	background-image: url(img/gridtitle1.jpg);
+	/*	background-color: #DDDDDD;*/
+	text-align: center;
+	font-size: 12px;
+	color: #000000;
+	
+	height: 40px; /*	border-right: 3px inset #FFFFFF; 	border-bottom: 2px inset #EEEEEE; 	border-left: 3px inset #FFFFFF; 	background-image: url(img/gridtitle.gif);*/
+}
+.cssAdminGridCommand {
+	width: 60px;
+	text-align: center;
+}
+
+.cssAdminGridCommand img {
+	cursor: hand;
+	margin-left: 2px;
+	margin-right: 2px;
+	border: none;
+}
+
+.tbAdminEdit {
+	width: 100%;
+	height: 100%;
+	padding-top: 15px;
+	border: 1px ridge #007777;
+	background-color: #EEEEEE;
+}
+
+#tdAdminEditTitle {
+	text-align: center;
+	border: 0px;
+	height: 40px;
+}
+
+.tdAdminEditLabel {
+	width: 80px;
+	font-size: 12px;
+	text-align: right;
+	padding-right: 5px;
+	padding-top: 5px;
+	vertical-align: top;
+	border: 0px;
+}
+
+.tdAdminEditInput {
+	font-size: 12px;
+	border: 0px;
+	vertical-align: top;
+}
+
+.tdAdminEditInput input {
+	border: 1px groove #7F9DB9;
+}
+
+#txtObjectID {
+	display: none;
+	width: 5px;
+}
+
+#txtIDList {
+	display: none;
+	width: 5px;
+}
+
+#tbAdminBar {
+	width: 100%;
+	background-image: url(img/adminbar.jpg);
+	font-size: 16px;
+	font-weight: bold;
+	color: #006600;
+	margin-bottom: 20px;
+	height: 30px;
+}
+
+#tbAdminBar img {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.tdAdminBarInputCell {
+	margin-right: 20px;
+	text-align: right;
+}
+
+.tdAdminBarInputCell input {
+	border: 1px solid #003C74;
+	margin-right: 5px;
+	background-image: url(img/buttonbg.gif);
+}
+
+#tbToolBar {
+	width: 100%;
+	background-image: url(img/toolbar.jpg); /*adminbar.jpg*/
+	font-size: 16px;
+	/*	font-weight: bold;*/ /*	color: #006600;*/
+	height: 30px;
+	background-color: #EEEEEE;
+	border-top: 1px outset #FFFFFF;
+	border-bottom: 2px inset #FFFFFF;
+}
+
+#tbToolBar img {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#tbDialogBottom {
+	width: 92%;
+	margin-left: 10px;
+	height: 30px;
+}
+
+#tbDialogBottom td {
+	text-align: right;
+}
+
+#tbDialogBottom input {
+	border: 1px solid #003C74;
+	margin-right: 5px;
+	background-image: url(img/buttonbg.gif);
+}
+
+.tdToolBarInputCell {
+	margin-left: 20px;
+	text-align: left;
+}
+
+.tdToolBarInputCell input {
+	border: 1px solid #6A8598; /* 	border: 1px solid #003C74;*/
+	margin-right: 5px;
+	cursor: hand;
+	background-image: url(img/buttonbg.gif);
+	text-valign: middle;
+	padding-top: 2px;
+}
+
+.divMenuTitle {
+	text-align: center;
+	
+	background-color: #f1f1f1;
+	color: #f1f1f1;
+	font-size: 24px;
+	height: 100%;
+	padding-top: 5px;
+	margin-top: 2px;
+}
+
+#tbListTools { /*	background-color: #EEF3F9;*/
+	margin-top: 5px;
+	margin-left: 5px;
+	width: 100%;
+	border: 2px solid #9192B7;
+	border-bottom: none;
+	background-color: #F9F9F9;
+}
+
+#tbListTools input {
+	border: 1px solid #6A8598;
+}
+
+.tbListToolsButton {
+	border: 1px solid #6A8598; /* 	border: 1px solid #003C74;*/
+	margin-right: 5px;
+	cursor: hand;
+	background-image: url(img/buttonbg.gif);
+	text-valign: middle;
+	padding-top: 2px;
+}
+
+.btnButton {
+	border: 1px solid #003C74;
+	margin-right: 5px;
+	cursor: hand;
+	background-image: url(img/buttonbg.gif);
+	font-size: 12px;
+	height: 20px;
+	text-valign: middel;
+}
+
+/*
+#tbAdminHead
+{
+	width:100%;
+	height:60;
+}*/
+a:link {
+	font-size: 12px;
+	color: #00754F;
+}
+
+a:visited {
+	font-size: 12px;
+	color: #00754F;
+}
+
+a:hover {
+	font-size: 12px;
+	color: #FF0000;
+}
+
+.cssPagerBar {
+	width: 100%;
+}
+
+.cssPagerBar table {
+	width: 100%; /*	border: 1px solid #009999;*/
+	height: 18px; /*	background-color: #FFFFFF;*/
+	font-size: 12px;
+	border: none;
+}
+
+.cssPagerBar td {
+	vertical-align: bottom;
+}
+
+.cssPagerBar select {
+	height: 16px;
+}
+
+.cssNoBorderInput {
+	border: none;
+}
+
+.cssToolButton {
+	font-size: 80%;
+	cursor: hand;
+	line-height: 18px;
+	text-align: center;
+}
+
+.cssToolButton A:link {
+	width: 100%;
+	color: #ffffff;
+	height: 100%;
+	background-color: #7294b1;
+	text-decoration: none;
+}
+
+.cssToolButton A:visited {
+	width: 100%;
+	color: #ffffff;
+	height: 100%;
+	background-color: #7294b1;
+	text-decoration: none;
+}
+
+.cssToolButton A:hover {
+	width: 100%;
+	color: #333333;
+	height: 100%;
+	background-color: #EEF3F9;
+	text-decoration: none;
+}
+
+/* 搜索按钮 */
+#cmdSearch {
+	height: 40px;
+	width: 40px;
+	border: outset 1px #7294b1;
+}
+
+/*为银行贷款审批系统新建的*/
+.tbGroup {
+	width: 100%;
+	border: 0px solid #EEEEEE;
+}
+
+.tdGroupHead {
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #006699;
+	text-align: center;
+	height: 24px;
+	color: #FFFFFF;
+}
+
+.tbDataView {
+	width: 100%;
+	height: 100%;
+	padding-top: 15px;
+	border: 1px ridge #007777;
+	background-color: #EEEEEE;
+	padding-left: 10px;
+}
+
+#tdDataViewTitle {
+	text-align: center;
+	border: 0px;
+	height: 60px;
+}
+
+.tdDataViewLabel {
+	width: 100px;
+	font-size: 12px;
+	text-align: right;
+	vertical-align: middle;
+	background-color: #FFFFFF;
+	border: 0px;
+}
+
+.tdDataViewData {
+	padding-left: 5px;
+	font-size: 12px;
+	border: 0px;
+	vertical-align: middle;
+	background-color: #FFFFFF;
+	color: #1A4583;
+}
+
+.inputTable {
+	border: none;
+	width: "96%";
+	background-color: #9192B7;
+}
+
+.inputTable td {
+	padding: 4px;
+}
+
+.inputLable {
+	background-color: #F2F2F2;
+}
+
+.inputArea {
+	background-color: #F9F9F9;
+}
+
+.inputCtr {
+	border: solid 1px #999999;
+}
+
+.tbPagination {
+	width: 350px;
+	height: 16px;
+	/*	position: absolute;
+	right:6px;
+	top:5px;*/
+}
+
+.tbPagination td {
+	vertical-align: bottom;
+}

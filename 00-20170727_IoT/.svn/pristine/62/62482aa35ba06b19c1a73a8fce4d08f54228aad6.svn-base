@@ -1,0 +1,564 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld "%>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<link href="res/mistake.css" type="text/css" rel="stylesheet">
+<link href="res/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet"
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css.css">
+<script src="res/jquery-3.2.1.min.js"></script>
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://www.my97.net/dp/My97DatePicker/WdatePicker.js"></script>
+<script src="js/qikoo.js"></script>
+</head>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	request.setAttribute("message", "000");
+%>
+
+<style>
+.div-1 {
+	position: absolute;
+	right: 10px;
+	left: 10px;
+	top: 100px;
+	background: #f1f1f1;
+	width: 100%;
+	height: 90%;
+	display: none;
+}
+
+.div-2 {
+	backgroud: #f00;
+	width: 95%;
+	float: center;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.div-3 {
+	float: right;
+	margin-bottom: 10px;
+	padding-right: 10px;
+}
+
+table,th,td {
+	text-align: center;
+	font-size:13px;
+}
+
+input.text {
+	text-align: center;
+	padding: 10px;
+}
+
+a:link {
+	color: #337ab7;
+	font-size: 15px;
+	
+}
+</style>
+
+<script type="text/javascript">
+	//文本框失去焦点后
+	$(function() {
+		var ok1 = false;
+		var ok2 = false;
+		$("form :input.required").each(function() {
+			var $required = $("<strong class='high'>*</strong>"); //创建元素
+			//$(this).parent().append($required);  //追加到文档中 
+			$(this).parent().prepend($required);
+		});
+		//文本框失去焦点后
+		$("form :input")
+				.blur(
+						function() {
+							
+							var $parent = $(this).parent();
+							if ($(this).is('#entityID')) {
+								//验证监控点编号
+								if (this.value == "") {
+									var errorMsg = '不能为空';
+									$parent
+											.append('<td><span class="formtips onError" style="color:red;font-size:10px">'
+													+ errorMsg + '</span></td>');
+								} else if (!$("#entityID").val().match(
+										/^[A-Za-z0-9]+$/)) {
+									var errorMsg = '只能输入数字或者字母';
+									$parent
+											.append('<td><span class="formtips onError" style="color:red;font-size:10px">'
+													+ errorMsg + '</span></td>');
+								} else {
+									ok1 = true;
+								}
+							}
+
+
+							if ($(this).is('#chargeName')) {
+								//验证负责人
+								if (this.value == "") {
+									//	var myReg = /^[\u4e00-\u9fa5]+$/;
+									var errorMsg = '不能为空';
+									$parent
+											.append('<td><span class="formtips onError" style="color:red;font-size:10px">'
+													+ errorMsg + '</span></td>');
+								} else if (!$("#chargeName").val().match(
+										/^[\u4e00-\u9fa5]+$/)&&(!$("#chargeName").val().match(
+										/^[A-Za-z0-9]+$/))) {
+									var errorMsg = '请输入正确的姓名';
+									$parent
+											.append('<td class="formtips onError" style="color:red;font-size:10px">'
+													+ errorMsg + '</td>');
+								} else {
+									ok2 = true;
+								}
+							}
+						});
+		$("form :input").focus(function() {
+			var $parent = $(this).parent();
+			$parent.find(".formtips").remove();
+		});
+		//最终提交验证
+		$("#send").click(function() {
+			var $parent = $(this).parent().parent();
+			$parent.find(".formtips").remove();
+			$("form :input").trigger('blur');
+			if (ok1 && ok2) {
+				alert("增加成功");
+			} else {
+				return false;
+			}
+
+		});
+	});
+	//重置
+	function subform() {
+		$("input").val('');
+		$("textarea").val('');
+		$("select").val("000");
+	}
+	//删除
+	
+</script>
+
+<body bgcolor="#f1f1f1">
+<form id="frmtop" name="frmtop" method="post" action="" class="form-horizontal">
+	<div id="div2" class="div-2">
+		
+			<div>
+				<h2 style="text-align:center">
+					<b>监控点维修记录</b>
+				</h2>
+			</div>
+			<div>
+				<div id="div3" class="div-3">
+					<table width="500px" height="2%;" border="0" cellspacing="0"
+						cellpadding="0" align="right">
+						<tr height="2%;">
+							<td align="right" style="font-size:15px;"><label
+								for="firstname">节点编号:</label></td>
+							<td width="20%;"><input type="text" class="form-control"
+								id="firstname"></td>
+							<td align="right" style="font-size:15px;"><label
+								for="lastname">节点类型:</label></td>
+							<td width="25%;" height="10%;"><select class="form-control">
+									<option value="000">--请选择--</option>
+									<option value="水位传感器">水位传感器</option>
+									<option value="倾角传感器">倾角传感器</option>
+									<option value="超声波测距传感器">超声波测距传感器</option>
+									<option value="温度传感器">温度传感器</option>
+									<option value="光照传感器">光照传感器</option>
+							</select></td>
+							<td>
+								<button type="button" class="btn btn-primary btn-sm"
+									id="search">查询</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-primary btn-sm"
+									id="adduser" data-toggle="modal" data-target="#addnode">新增</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<!-- 新增维修信息 -->
+			<div style="float: center;" class="modal fade" id="addnode"
+				tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog"
+					style="width:70%;padding:0px;margin-top:0px;">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h3 style="text-align:center" class="modal-title"
+								id="addModalLabel">
+								<b>新增监控点信息</b>
+							</h3>
+						</div>
+						<div class="modal-body">
+							<form method="post" action="">
+								<table width="95%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="firstname" class="col-sm-12 control-label">监控点编号</label></td>
+										<td><input type="text" sylte="width:50%;"
+											class="form-control" id="entityID" placeholder="A20001"></td>
+										<td style="font-size:15px; padding:5px"><label
+											for="lastname" class="col-sm-12 control-label">监控点类型</label></td>
+
+										<td><select class="form-control" id="select" type="select">
+												<option value="000">--请选择--</option>
+												<option value="下水道">井盖</option>
+												<option value="垃圾桶">下水道</option>
+												<option value="古树">古树</option>
+										</select></td>
+									</tr>		
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">负&nbsp;&nbsp;&nbsp;&nbsp;责&nbsp;&nbsp;&nbsp;&nbsp;人</label></td>
+										<td><input type="text" class="form-control"
+											id="chargeName"></td>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">负责人电话</label></td>
+										<td><input type="text" class="form-control"
+											id="Mobile"></td>
+									</tr>
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="status" class="col-sm-12 control-label">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态</label></td>
+										<td><input type="text" class="form-control"
+											id="status"></td>
+										<td style="font-size:15px; padding:10px"><label
+											for="address" class="col-sm-12 control-label">详&nbsp;细&nbsp;地&nbsp;址</label></td>
+										<td><input type="text" class="form-control"
+											id="address"></td>
+									</tr>	
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">损&nbsp;坏&nbsp;时&nbsp;间&nbsp;</label></td>
+										<td><input type="text" class="form-control" id="lastname"
+											placeholder="YY-MM-DD" onclick="WdatePicker()"></td>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">维&nbsp;修&nbsp;时&nbsp;间&nbsp;</label></td>
+										<td><input type="text" class="form-control" id="lastname"
+											placeholder="YY-MM-DD" onclick="WdatePicker()"></td>
+									</tr>
+
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">维&nbsp;&nbsp;&nbsp;&nbsp;修&nbsp;&nbsp;&nbsp;&nbsp;人</label></td>
+										<td><input type="text" class="form-control" id="lastname"></td>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">维修人电话</label></td>
+										<td><input type="text" class="form-control" id="Mobile"></td>
+									</tr>
+
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">所&nbsp;在&nbsp;区&nbsp;域&nbsp;</label></td>
+
+										<td><select class="form-control" id="select1" type="select">
+												<option value="000">--请选择--</option>
+												<option value="岳麓书院">岳麓书院</option>
+												<option value="东方红广场">东方红广场</option>
+												<option value="古树"></option>
+										</select></td>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</label></td>
+										<td><input type="text" class="form-control" id="lastname"
+											placeholder="已修"></td>
+										
+
+									</tr>
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">维&nbsp;修&nbsp;原&nbsp;因&nbsp;</label></td>
+										<td><textarea type="text" class="form-control"
+												id="lastname"></textarea></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+						<div style="margin:5px" class="modal-footer">
+							<table align="center">
+								<tr>
+									<td>
+										<button type="button" class="btn btn-primary btn-sm"
+											data-dismiss="modal">取消</button>
+										<button type="button" id="res" onclick="subform()"
+											class="btn btn-primary btn-sm">重置</button>
+										<button type="submit" class="btn btn-primary btn-sm" id="send">保存</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 修改信息 -->
+			<div style="float: center;" class="modal fade" id="editModal"
+				tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog"
+					style="width:70%;padding:0px;margin-top:0px;">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h3 style="text-align:center" class="modal-title"
+								id="addModalLabel">
+								<b>修改监控点信息</b>
+							</h3>
+						</div>
+						<div class="modal-body">
+							<form method="post" action="">
+								<table width="95%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="firstname" class="col-sm-12 control-label">监控点编号</label></td>
+										<td><input type="text" readonly="readonly"
+											sylte="width:50%;" class="form-control" id="firstname"
+											placeholder="#sn.id"></td>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">监控点类型</label></td>
+										<td><select class="form-control" id="select" type="select">
+												<option value="000">--请选择--</option>
+												<option value="下水道">正常</option>
+												<option value="垃圾桶">已维修</option>
+												<option value="古树">已损坏</option>
+										</select></td>
+									</tr>
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">负&nbsp;&nbsp;&nbsp;&nbsp;责&nbsp;&nbsp;&nbsp;&nbsp;人</label></td>
+										<td><input type="text" readonly="readonly"
+											class="form-control" id="lastname" placeholder="习习"></td>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">负责人电话</label></td>
+										<td><input type="text" readonly="readonly"
+											class="form-control" id="lastname" placeholder="18774052506"></td>
+									</tr>
+
+
+
+
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">损&nbsp;坏&nbsp;时&nbsp;间&nbsp;</label></td>
+										<td><input type="text" readonly="readonly"
+											class="form-control" id="lastname" placeholder="2017-06-20"></td>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">维&nbsp;修&nbsp;时&nbsp;间&nbsp;</label></td>
+										<td><input type="text" class="form-control" id="lastname"
+											onclick="WdatePicker()"></td>
+									</tr>
+
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">维&nbsp;&nbsp;&nbsp;&nbsp;修&nbsp;&nbsp;&nbsp;&nbsp;人</label></td>
+										<td><input type="text" class="form-control" id="lastname"
+											placeholder="维修人"></td>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">维修人电话</label></td>
+										<td><input type="text" class="form-control" id="lastname"
+											placeholder="维修人电话"></td>
+									</tr>
+
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">所&nbsp;在&nbsp;区&nbsp;域&nbsp;</label></td>
+										<td><select class="form-control" id="select" type="select">
+												<option value="000">--请选择--</option>
+												<option value="岳麓书院">岳麓书院</option>
+												<option value="东方红广场">东方红广场</option>
+												<option value="古树"></option>
+										</select></td>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">维&nbsp;修&nbsp;原&nbsp;因&nbsp;</label></td>
+										<td><textarea type="text" class="form-control"
+												id="lastname" placeholder="维修原因"></textarea></td>
+
+									</tr>
+									<tr>
+										<td style="font-size:15px; padding:10px"><label
+											for="lastname" class="col-sm-12 control-label">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</label></td>
+										<td><input type="text" class="form-control" id="lastname"
+											placeholder="已修"></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+						<div style="margin:5px" class="modal-footer">
+							<table align="center">
+								<tr>
+									<td>
+										<button type="submit" class="btn btn-primary btn-sm">取消</button>
+										<button type="button" id="res" onclick="subform()"
+											class="btn btn-primary btn-sm">重置</button>
+										<button type="buttom" onclick="javascript:return confirm("您确认要保存修改吗?")" class="btn btn-primary btn-sm">保存</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<table class="table table-striped" border="0" cellspacing="0"
+				cellpadding="0">
+				<tr><td><b>序号</b></td>
+				<td><b>编号</b></td>
+				<td><b>类型</b></td>
+				<td><b>状态</b></td>
+				<td><b>损坏时间</b></td>
+				<td><b>详细地址</b></td>
+				<td><b>负责人</b></td>
+				<td><b>负责人电话</b></td>
+				<td><b>维修人</b></td>
+				<td><b>维修人电话</b></td>
+				<td><b>维修时间</b></td>
+				<td><b>损坏原因</b></td>
+				<td><b>备注</b></td>
+				<td><b>操&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作</b></td>
+				</tr>
+
+				<tr>
+					<td>1</td>
+					<td>A10001</td>
+					<td>井盖</td>
+					<td>井盖松动</td>
+					<td>2017-06-20 09-06-59</td>
+					<td>岳麓书院</td>
+					<td>习习</td>
+					<td>18774052506</td>
+					<td>钟涛</td>
+					<td>18774052506</td>
+					<td>2017-06-21 15-06-59</td>
+					<td></td>
+					<td>已修</td>
+					<td style="cursor:pointer;"><a href="#" data-toggle="modal" data-target="#editModal" ><span
+							class="glyphicon glyphicon-pencil"></span>&nbsp;编辑&nbsp;&nbsp;</a> <a
+						href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>A10001</td>
+					<td>井盖</td>
+					<td>井盖松动</td>
+					<td>2017-06-20 09-06-59</td>
+					<td>岳麓书院</td>
+					<td>习习</td>
+					<td>18774052506</td>
+					<td>钟涛</td>
+					<td>18774052506</td>
+					<td>2017-06-21 15-06-59</td>
+					<td></td>
+					<td>已修</td>
+					<td style="cursor:pointer;"><a href="#" data-target="#editModal"><span
+							class="glyphicon glyphicon-pencil"></span>&nbsp;编辑&nbsp;&nbsp;</a> <a
+						href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a></td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>A10001</td>
+					<td>井盖</td>
+					<td>井盖松动</td>
+					<td>2017-06-20 09-06-59</td>
+					<td>岳麓书院</td>
+					<td>习习</td>
+					<td>18774052506</td>
+					<td>钟涛</td>
+					<td>18774052506</td>
+					<td>2017-06-21 15-06-59</td>
+					<td></td>
+					<td>已修</td>
+					<td style="cursor:pointer;"><a href="#" data-toggle="modal" data-target="#editModal"><span
+							class="glyphicon glyphicon-pencil"></span>&nbsp;编辑&nbsp;&nbsp;</a> <a
+						href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a></td>
+				</tr>
+
+				<s:iterator id="sn" value="sensorNodeList">
+					<tr>
+						<td><s:property value="#sn.id" /></td>
+
+						<td><s:property value="#sn.id" /></td>
+
+						<td><s:property value="#sn.id" /></td>
+
+						<td><s:property value="#sn.id" /></td>
+
+						<td><s:property value="#sn.id" /></td>
+
+						<td><s:property value="#sn.id" /></td>
+
+						<td><s:property value="#sn.machineId" /></td>
+
+						<td><s:property value="#sn.sensorType" /></td>
+
+						<td><s:property value="#sn.entityId" /></td>
+
+						<td><s:property value="#sn.setTime" /></td>
+                        <td><s:property value="#sn.setTime" /></td>
+						<td><s:property value="#sn.remark" /></td>
+						<td style="cursor:pointer;"><a data-toggle="modal" data-target="#editModal"><span
+								class="glyphicon glyphicon-pencil"></span>&nbsp;编辑&nbsp;&nbsp;</a> <a
+							href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a></td>
+					</tr>
+				</s:iterator>
+			</table>
+	</div>
+</form>
+	<div class="pagging">
+
+		<div align="right" class="modal-footer">
+			<button>
+				<a href="#">上一页</a>
+			</button>
+			<button>
+				<a href="#">1</a>
+			</button>
+			<button>
+				<a href="#">2</a>
+			</button>
+			<button>
+				<a href="#">3</a>
+			</button>
+			<button>
+				<a href="#">4</a>
+			</button>
+
+			<span>...</span>
+			<button>
+				<a href="#">24</a>
+			</button>
+			<button>
+				<a href="#">下一页</a>
+			</button>
+			<button>
+				<a href="#">显示所有</a>
+			</button>
+		</div>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"  
+    pageEncoding="utf-8"%>  
+<%@ page import="java.util.*" %>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html>  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
+<title>Insert title here</title>  
+<!-- 引入jquery的库 -->  
+<script type="text/javascript" src="res/jquery-3.2.1.min.js"></script>  
+<script type="text/javascript">  
+    $(document).ready(function (){  
+        $("#aId").click(function(){  
+            if($("#left_staus").val() == "打开"){  
+                $("#left_staus").val("关闭");  
+                closeFrameset();  
+            }else if($("#left_staus").val() == "关闭"){  
+                $("#left_staus").val("打开");  
+                openFrameset();  
+            }  
+        })  
+    });  
+    function closeFrameset(){  
+        var fs = parent.document.getElementsByTagName("frameset")[0];  
+        var fs1 = parent.document.getElementsByTagName("frameset")[1];  
+        var fs2 = parent.document.getElementsByTagName("frameset")[2];  
+        var fs3 = parent.document.getElementsByTagName("frameset")[3];  
+        fs.cols = "0,*";  
+		fs2.cols="0,*";
+		fs3.rows="*,0";
+        document.getElementById("aId").innerHTML = "a页面打开";  
+    }  
+    function openFrameset(){  
+        var fs = parent.document.getElementsByTagName("frameset")[0];  
+        var fs1 = parent.document.getElementsByTagName("frameset")[1];  
+        var fs2 = parent.document.getElementsByTagName("frameset")[2];  
+        var fs3 = parent.document.getElementsByTagName("frameset")[3];  
+        fs.cols = "*,700";  
+		fs2.cols="100,*";
+		fs3.rows="*,400";
+        document.getElementById("aId").innerHTML = "a页面关闭";  
+    }  
+</script>  
+</head>  
+<body bgcolor="red">  
+    <div id="aId">a页面打开</div>  
+    <input type="hidden" name="left_staus" id="left_staus" value="打开">  
+</body>  
+</html> 

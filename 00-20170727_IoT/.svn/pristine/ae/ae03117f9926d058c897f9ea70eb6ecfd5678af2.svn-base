@@ -1,0 +1,447 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<link href="res/mistake.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+<<<<<<< .mine
+									
+									
+													<div class="divMenu">
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="usermanage.jsp" target="frmMap">Áî®Êà∑ÁÆ°ÁêÜ</a>
+																</td>
+															</tr>
+														</table>
+
+					
+
+
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="entityQueryAll" target="frmMap">ÁõëÊéßÁÇπÈ°µ</a>
+																</td>
+															</tr>
+														</table>
+
+														
+														
+															<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="sensorNodeQueryAll" target="frmMap">ËäÇÁÇπÁÆ°ÁêÜ</a>
+																</td>
+															</tr>
+														</table>
+												
+												
+													<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href=" usermanage.jsp" target="frmMap">Áî®Êà∑ÁÆ°ÁêÜ</a>
+																</td>
+															</tr>
+
+														</table>
+														
+												
+
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="pielist.jsp" target="frmMap">Êï∞ÊçÆÂàÜÊûê</a>
+																</td>
+															</tr>
+
+														</table>
+
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="iconlist.jsp" target="frmMap">ËäÇÁÇπÂàóË°®</a>
+																</td>
+															</tr>
+
+														</table>
+
+														
+
+										
+
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="map.jsp" target="frmMap">Êü•ÁúãÂú∞Âõæ</a>
+																</td>
+															</tr>
+
+														</table>
+												
+													
+													
+													
+												
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="pielist.jsp" target="frmMap">Êü•ÁúãÂàóË°®</a>
+																</td>
+															</tr>
+
+														</table>
+														
+													
+													
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="map.jsp" target="frmMap">ÂêéÈÄÄ‰∏ÄÈ°µ</a>
+																</td>
+															</tr>
+
+														</table>
+												
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="pielist.jsp" target="frmMap">ÂâçËøõ‰∏ÄÈ°µ</a>
+																</td>
+															</tr>
+
+														</table>
+														
+														
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="map.jsp" target="frmMap">Âà∑Êñ∞ÁïåÈù¢</a>
+																</td>
+															</tr>
+
+														</table>
+												
+												
+														
+
+														
+															<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="list.jsp" target="frmfootBar">Êõ¥ÊîπÂØÜÁ†Å</a>
+																</td>
+															</tr>
+														</table>
+												
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="test.jsp" target="frmfootBar">ÈÄÄÂá∫ÁôªÂΩï</a>
+																</td>
+															</tr>
+														</table>
+
+													
+
+													</div>
+													
+												</td>
+											</tr>
+										</table>
+									
+								</td>
+								</div>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</table>		
+||||||| .r53
+									
+									
+													<div class="divMenu">
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="usermanage.jsp" target="frmMap"></a>
+																</td>
+															</tr>
+														</table>
+
+					
+
+
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="devicemanage.jsp" target="frmMap">…Ë±∏π‹¿Ì</a>
+																</td>
+															</tr>
+														</table>
+
+														
+														
+															<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="sensorNodeManage" target="frmMap">Ω⁄µ„π‹¿Ì</a>
+																</td>
+															</tr>
+														</table>
+												
+												
+													<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href=" usermanage.jsp" target="frmMap">”√ªßπ‹¿Ì</a>
+																</td>
+															</tr>
+
+														</table>
+														
+												
+
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="pielist.jsp" target="frmMap"> ˝æ›∑÷Œˆ</a>
+																</td>
+															</tr>
+
+														</table>
+
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="iconlist.jsp" target="frmMap">Ω⁄µ„¡–±Ì</a>
+																</td>
+															</tr>
+
+														</table>
+
+														
+
+										
+
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="map.jsp" target="frmMap">≤Èø¥µÿÕº</a>
+																</td>
+															</tr>
+
+														</table>
+												
+													
+													
+													
+												
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="pielist.jsp" target="frmMap">≤Èø¥¡–±Ì</a>
+																</td>
+															</tr>
+
+														</table>
+														
+													
+													
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="map.jsp" target="frmMap">∫ÛÕÀ“ª“≥</a>
+																</td>
+															</tr>
+
+														</table>
+												
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="pielist.jsp" target="frmMap">«∞Ω¯“ª“≥</a>
+																</td>
+															</tr>
+
+														</table>
+														
+														
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="map.jsp" target="frmMap">À¢–¬ΩÁ√Ê</a>
+																</td>
+															</tr>
+
+														</table>
+												
+												
+														
+
+														
+															<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																	<a href="list.jsp" target="frmfootBar">∏¸∏ƒ√‹¬Î</a>
+																</td>
+															</tr>
+														</table>
+												
+														<table height="42px" cellspacing="0" cellpadding="0" width="100%" border="0">
+															<tr style="cursor:hand" onclick="">
+																<td class="divMenuTitle">
+																	<img alt="" src="res/tubiao.jpg" width="28px" height="28px">
+																		<a href="test.jsp" target="frmfootBar">ÕÀ≥ˆµ«¬º</a>
+																</td>
+															</tr>
+														</table>
+
+													
+
+													</div>
+													
+												</td>
+											</tr>
+										</table>
+									
+								</td>
+								</div>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</table>		
+=======
+<body bgcolor="#f1f1f1">
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="sr-only">test</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#"></a>
+	</div>
+		
+	<div style="background:#669933;width:15%;height:100%">
+		
+		<div class="collapse navbar-collapse" id="myNavbar" height="42px" width="50px" cellspacing="0" cellpadding="0" border="0">
+			<ul class="nav navbar-nav" style="background:#669933;width:100%">
+				<li>
+					<a href="#" style="font-size:14px; width: 100%; color:white"> 
+						<span class="glyphicon glyphicon-home"></span>
+						&nbsp;&nbsp;<b>÷˜</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>“≥</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					</a>
+				</li>
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 14px; width: 100%; color:white"> 
+						<span class="glyphicon glyphicon-inbox"></span>
+						&nbsp;&nbsp;<b>º‡øÿµ„π‹¿Ì</b>&nbsp;&nbsp;<b class="caret"></b> 
+					</a>
+				
+					<ul id="entityMng" class="dropdown-menu" style="background:#669933;text-align:center">
+						<li><a href="#" style="font-size: 14px;"><b>º‡&nbsp;øÿ&nbsp;µ„&nbsp;¡–&nbsp;±Ì</b></a></li>
+						<li class="divider" style="font-size: 14px;"></li>
+						<li><a href="#" style="font-size: 14px;"><b>Ω⁄&nbsp;µ„&nbsp;¡–&nbsp;±Ì</b></a></li>
+						<li class="divider" style="font-size: 14px;"></li>
+						<li><a href="#" style="font-size: 14px;";><b>º‡øÿµ„Œ¨–ﬁº«¬º</b></a></li>
+					</ul>
+				</li>
+				
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 14px;width: 100%; color:white"> 
+						<span class="glyphicon glyphicon-stats"></span>
+						&nbsp;&nbsp;<b> ˝&nbsp;æ›&nbsp;∑÷&nbsp;Œˆ</b>&nbsp;&nbsp;<b class="caret"></b> 
+					</a>
+				
+					<ul class="dropdown-menu" style="background:#669933;text-align:center">
+						<li><a href="#" style="font-size: 14px;"><b>¬∑&nbsp;æ∂&nbsp;—°&nbsp;‘Ò</b></a></li>
+						<li class="divider" style="font-size: 14px;"></li>
+						<li><a href="#" style="font-size: 14px;"><b>¿˙&nbsp; ∑&nbsp; ˝&nbsp;æ›</b></a></li>
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 14px;width: 100%; color:white"> 
+						<span class="glyphicon glyphicon-user"></span>
+						&nbsp;&nbsp;<b>”√&nbsp;ªß&nbsp;π‹&nbsp;¿Ì</b>&nbsp;&nbsp;<b class="caret"></b> 
+					</a>
+				
+					<ul class="dropdown-menu" style="background:#669933;text-align:center">
+						<li><a href="#" style="font-size: 14px;"><b>”√ªß–≈œ¢π‹¿Ì</b></a></li>
+						<li class="divider" style="font-size: 14px;"></li>
+						<li><a href="#" style="font-size: 14px;"><b>≤ø&nbsp;√≈&nbsp;π‹&nbsp;¿Ì</b></a></li>
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 14px;width: 100%; color:white"> 
+						<span class="glyphicon glyphicon-cog"></span>
+						&nbsp;&nbsp;<b>œµ&nbsp;Õ≥&nbsp;π‹&nbsp;¿Ì</b>&nbsp;&nbsp;<b class="caret"></b> 
+					</a>
+				
+					<ul id="sysMng" class="dropdown-menu" style="background:#669933;text-align:center">
+						<li><a href="#" style="font-size: 14px;"><b>∏ˆ»À–≈œ¢–ﬁ∏ƒ</b></a></li>
+						<li class="divider" style="font-size: 14px;"></li>
+						<li><a href="#" style="font-size: 14px;"><b>«¯&nbsp;”Ú&nbsp;π‹&nbsp;¿Ì</b></a></li>
+						<li class="divider" style="font-size: 14px;"></li>
+						<li><a href="#" style="font-size: 14px;"><b>»®&nbsp;œﬁ&nbsp;…Ë&nbsp;÷√</b></a></li>
+					</ul>
+				</li>
+				
+				<li>
+					<a href="#" style="font-size: 14px; width: 100%; color:white"> 
+						<span class="glyphicon glyphicon-off"></span>
+						&nbsp;&nbsp;<b>ÕÀ&nbsp;≥ˆ&nbsp;œµ&nbsp;Õ≥</b>&nbsp;&nbsp; 
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+</nav>
+>>>>>>> .r60
+</body>
+</html>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="edu.hnu.csee.luo.dao.DepartmentDao">
+
+ <resultMap id="BaseResultMap" type="edu.hnu.csee.luo.model.Department" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="departmentId" property="departmentId" jdbcType="VARCHAR" />
+    <result column="departmentName" property="departmentName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="peopleNum" property="peopleNum" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="startIndex" property="startIndex" jdbcType="INTEGER" />
+   	<result column="pageSize" property="pageSize" jdbcType="INTEGER" />
+    <association property="user" column="user" javaType="edu.hnu.csee.luo.model.User">
+	   	<!--id column="id" property="u_id" jdbcType="INTEGER"/-->
+	   	<result column="userName" property="userName" jdbcType="VARCHAR"/>
+	   	<result column="tel" property="tel" jdbcType="VARCHAR"/>
+   </association>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+   id, departmentId, departmentName, address, tel, peopleNum, remark
+  </sql>
+
+<select id="queryDepartmentInfoById" resultMap="BaseResultMap">  
+    select td.departmentId, td.departmentName, ti.userName, td.tel, td.address, td.remark from dep_info td 
+	left join USER_INFO ti on td.departmentId = ti.departmentId
+	where td.departmentId= #{departmentId}; 
+</select>  
+
+<select id="queryDepartInfoById" parameterType="edu.hnu.csee.luo.model.Department" resultType="edu.hnu.csee.luo.model.Department">  
+    select * from dep_info WHERE 1=1 and departmentId= #{departmentId};
+</select>
+
+<select id="queryAllDepartmentsInfo" parameterType="edu.hnu.csee.luo.model.Department" resultMap="BaseResultMap">
+	select td.departmentId, td.departmentName, ti.userName, td.tel, td.address, td.remark from dep_info td 
+	left join USER_INFO ti on td.departmentId = ti.departmentId
+	<where>  
+	 	<if test="1==1">
+	 		1=1
+	 	</if>
+        <if test="departmentId!=null and departmentId!='' ">     
+           and td.departmentId = #{departmentId}      
+        </if>    
+         <if test="departmentName!=null and departmentName!='' ">     
+           and td.departmentName = #{departmentName}      
+        </if>  
+    </where>  
+   limit #{paging.begin},#{paging.pageSize}
+</select>
+
+<select id="queryDepartmentsCount" parameterType="edu.hnu.csee.luo.model.Department"  resultType="java.lang.Integer" >  
+    SELECT 
+ 	count(*)
+ 	FROM dep_info
+</select> 
+
+<insert id="insertOneDepartment" parameterType="edu.hnu.csee.luo.model.Department" >
+  insert into dep_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="departmentId != null" >
+        departmentId,
+      </if>
+       <if test="departmentName != null" >
+        departmentName,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="peopleNum != null" >
+        peopleNum,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+       <if test="departmentName != null" >
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleNum != null" >
+        #{peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+</insert>
+
+<delete id="deleteDepartmentById" parameterType="edu.hnu.csee.luo.model.Department" >
+  delete from dep_info where departmentId = #{departmentId}
+</delete>
+
+<update id="updateDepartmentInfo" parameterType="edu.hnu.csee.luo.model.Department" >
+  update dep_info
+    <set >
+    	<if test="departmentName != null" >
+        departmentName = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleNum != null" >
+        peopleNum = #{peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where departmentId = #{departmentId,jdbcType=VARCHAR}
+ </update>
+
+</mapper>

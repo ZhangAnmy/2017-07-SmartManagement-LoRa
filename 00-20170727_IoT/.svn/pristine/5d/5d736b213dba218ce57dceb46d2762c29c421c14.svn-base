@@ -1,0 +1,55 @@
+package edu.hnu.csee.luo.action;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+
+import edu.hnu.csee.luo.model.Pagination;
+import edu.hnu.csee.luo.model.SensorNode;
+import edu.hnu.csee.luo.model.User;
+import edu.hnu.csee.luo.model.UserInfoChange;
+import edu.hnu.csee.luo.model.UserLogin;
+import edu.hnu.csee.luo.service.SensorNodeManageService;
+import edu.hnu.csee.luo.service.UserManageService; 
+public class UserInfoChangeAction extends ActionSupport implements Serializable{
+	
+	private User user;
+	private UserInfoChange UserInfoChange;
+	public UserInfoChange getUserInfoChange() {
+		return UserInfoChange;
+	}
+	public void setUserInfoChange(UserInfoChange userInfoChange) {
+		UserInfoChange = userInfoChange;
+	}
+	public User getUser() {
+		return user;
+	}
+	public List<User> getUserList() {
+		return userList;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
+	private List<User> userList;
+	
+	public static 	UserManageService  service= new UserManageService();
+	public static Logger log = Logger.getLogger(SensorNodeManageAction.class);	
+	public String editUserInfo(){
+		service.editUserInfo(UserInfoChange);
+		return "success";
+	}
+}
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC  
+    "-//mybatis.org//DTD Config 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration>  
+    <mappers>  
+        <mapper resource="edu/hnu/csee/luo/dao/SensorNodeDao.xml"/>  
+        <mapper resource="edu/hnu/csee/luo/dao/UserLoginDao.xml"/>  
+      	<mapper resource="edu/hnu/csee/luo/dao/EntityDao.xml"/>     	
+      	<mapper resource="edu/hnu/csee/luo/dao/DepartmentDao.xml"/>   
+      	<mapper resource="edu/hnu/csee/luo/dao/UserDao.xml"/>   
+ 		<mapper resource="edu/hnu/csee/luo/dao/MaintainDao.xml"/>  
+ 		<mapper resource="edu/hnu/csee/luo/dao/TreeDao.xml"/>    
+ 		
+ 		<mapper resource="edu/hnu/csee/luo/dao/NodeCollectDataDao.xml"/> 
+ 		
+ 		<mapper resource="edu/hnu/csee/luo/dao/TreeDao.xml"/>   
+    </mappers>  
+    
+</configuration>

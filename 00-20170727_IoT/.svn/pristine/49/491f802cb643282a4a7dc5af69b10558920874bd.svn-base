@@ -1,0 +1,160 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld "%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="res/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet"
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="res/jquery-3.2.1.min.js"></script>
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link href="res/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<script src="res/moment-with-locales.min.js"></script>
+<script src="res/bootstrap-datetimepicker.min.js"></script>
+
+
+</head>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<style>
+.dshow {
+	float: right;
+	margin-right: 7%;
+	margin-bottom: 1%;
+}
+
+.div-2 {
+	backgroud: #f00;
+	width: 95%;
+	float: center;
+	margin-left: 2.5%;
+	margin-top: 20px;
+	float: center;
+}
+
+table,th,td {
+	text-align: center;
+	font-size: 13px;
+}
+</style>
+
+<body  style="background-color: #f1f1f1;">
+	<div id="div1" class="div-2">
+		<div class="dshow">
+			<button type="button" class="btn btn-default btn-xs;"
+				onclick="window.location.href='entityhistorygraph.jsp'">列表/图表显示</button>
+		</div>
+		<div>
+			<table class="table table-hover" border="0" cellspacing="0"
+				cellpadding="0">
+				<tr bgcolor="#F0F0F0">
+					<td><b>序号</b>
+					</td>
+					<td><b>编号</b>
+					</td>
+					<td><b>监控类型</b>
+					</td>
+					<td><b>历史状态</b>
+					</td>
+					<td><b>时间</b>
+					</td>
+					<td><b>填装比例</b>
+					</td>
+					<td><b>温度</b>
+					</td>
+					<td><b>负责人</b>
+					</td>
+					<td><b>区域</b>
+					</td>
+				</tr>
+
+				<s:iterator id="ent" value="nodeCollectDataList" status="st">
+					<tr>
+						<td><s:property value="#st.index+1" />1</td>
+
+						<td id="entityid"><s:property value="#ent.entityId" />A10001</td>
+
+						<td><s:property value="#ent.entityType" /></td>
+
+						<td><s:property value="#ent.entityStatus" /></td>
+
+						<td><s:property value="#ent.recordTime" /></td>
+
+						<td><s:property value="#ent.value1" /></td>
+
+						<td><s:property value="#ent.value2" /></td>
+
+						<td><s:property value="#ent.user.userName" /></td>
+
+						<td><s:property value="#ent.area" /></td>
+					</tr>
+				</s:iterator>
+				<tr>
+					<td>2</td>
+
+					<td id="entityid">A10001</td>
+
+					<td>垃圾桶</td>
+
+					<td>正常</td>
+
+					<td>2017-07-14 20:00</td>
+
+					<td>0.2</td>
+
+					<td>23</td>
+
+					<td>张松</td>
+
+					<td>岳麓书院</td>
+				</tr>
+			</table>
+		</div>
+		<div class="pagging">
+
+			<div align="right" class="modal-footer">
+				<button>
+					<a href="#">上一页</a>
+				</button>
+				<button>
+					<a href="#">1</a>
+				</button>
+				<button>
+					<a href="#">2</a>
+				</button>
+				<button>
+					<a href="#">3</a>
+				</button>
+				<button>
+					<a href="#">4</a>
+				</button>
+
+				<span>...</span>
+				<button>
+					<a href="#">24</a>
+				</button>
+				<button>
+					<a href="#">下一页</a>
+				</button>
+				<button>
+					<a href="#">显示所有</a>
+				</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

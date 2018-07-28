@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="edu.hnu.csee.luo.dao.SensorNodeDao"> 
+ <resultMap id="BaseResultMap" type="edu.hnu.csee.luo.model.SensorNode" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sensorId" property="sensorId" jdbcType="VARCHAR" />
+    <result column="sensorType" property="sensorType" jdbcType="VARCHAR" />
+    <result column="entityId" property="entityId" jdbcType="VARCHAR" />
+    <result column="setTime" property="setTime" jdbcType="VARCHAR" />
+   	<result column="remark" property="remark" jdbcType="VARCHAR" /> 	
+   	<result column="startIndex" property="startIndex" jdbcType="INTEGER" />
+   	<result column="pageSize" property="pageSize" jdbcType="INTEGER" /> 
+    <association property="entity" column="entity" javaType="edu.hnu.csee.luo.model.Entity">
+	<id column="id" property="e_id" jdbcType="INTEGER"/>
+	   	<result column="entityId" property="entityId" jdbcType="VARCHAR"/>
+	   	<result column="entityStatus" property="entityStatus" jdbcType="VARCHAR"/>
+	   	<result column="area" property="area" jdbcType="VARCHAR"/>
+   </association>
+
+ </resultMap>
+
+ 
+ <select id="queryAllSensorNodesInfo" parameterType="edu.hnu.csee.luo.model.SensorNode"  resultMap="BaseResultMap">  
+    SELECT 
+ 	s.sensorId,s.sensorType,s.setTime,s.remark,e.entityId,e.entityStatus,e.area
+ 	FROM sensor_info s left join entity_info e
+ 	ON s.entityId = e.entityId
+
+ 	
+</select>  
+
+
+ <select id="querySensorNodeCount" parameterType="edu.hnu.csee.luo.model.SensorNode"  resultType="java.lang.Integer" >  
+    SELECT 
+ 	count(*)
+ 	FROM sensor_info s left join entity_info e
+ 	ON s.entityId = e.entityId
+ 	
+</select>  
+
+<select id="querySensorNodesInfo" parameterType="edu.hnu.csee.luo.model.SensorNode" resultMap="BaseResultMap">  
+    SELECT 
+ 	s.sensorId,s.sensorType,s.setTime,s.remark,e.entityId,e.entityStatus,e.area
+ 	FROM sensor_info s left join entity_info e
+ 	ON s.entityId = e.entityId
+ 	<where>  
+	 	<if test="1==1">
+	 		1=1
+	 	</if>
+        <if test="sensorId!=null and sensorId!='' ">     
+           and s.sensorId = #{sensorId}      
+        </if>    
+         <if test="sensorType!=null and sensorType!='' ">     
+           and s.sensorType = #{sensorType}      
+        </if>  
+         <if test="entityId!=null and entityId!='' ">     
+           and s.entityId = #{entityId}      
+        </if>   
+         <if test="setTime!=null and setTime!='' ">     
+           and s.setTime = #{setTime}      
+        </if>       
+        <if test="remark!=null and remark!='' ">     
+           and s.remark = #{remark}      
+        </if>       
+    </where>  
+   	limit #{paging.begin},#{paging.pageSize}
+</select>  
+
+<insert id="insertOneSensorNode" parameterType="edu.hnu.csee.luo.model.SensorNode" >
+  insert into sensor_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sensorId != null" >
+        sensorId,
+      </if>
+       <if test="sensorType != null" >
+        sensorType,
+      </if>
+      <if test="entityId != null" >
+        entityId,
+      </if>
+      <if test="setTime != null" >
+        setTime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 
+      <if test="sensorId != null" >
+        #{sensorId,jdbcType=VARCHAR},
+      </if>
+       <if test="sensorType != null" >
+        #{sensorType,jdbcType=VARCHAR},
+      </if>
+      <if test="entityId != null" >
+        #{entityId,jdbcType=INTEGER},
+      </if>
+      <if test="setTime != null" >
+        #{setTime,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+</insert>
+
+<delete id="deleteSensorNodeById" parameterType="edu.hnu.csee.luo.model.SensorNode" >
+  delete from sensor_info where sensorId = #{sensorId}
+</delete>
+
+<update id="updateSensorNodeInfo" parameterType="edu.hnu.csee.luo.model.SensorNode" >
+  update sensor_info
+    <set >
+      <if test="sensorType != null" >
+        sensorType = #{sensorType,jdbcType=VARCHAR},
+      </if>
+      <if test="entityId != null" >
+        entityId = #{entityId,jdbcType=INTEGER},
+      </if>
+      <if test="setTime != null" >
+        setTime = #{setTime,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sensorId = #{sensorId,jdbcType=VARCHAR}
+ </update>
+
+</mapper>

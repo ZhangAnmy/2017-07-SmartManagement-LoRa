@@ -1,0 +1,152 @@
+<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<link href="res/bootstrap.min.css" type="text/css" rel="stylesheet">
+<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+#main-nav {
+	margin-left: 1px;
+}
+
+#main-nav.nav-tabs.nav-stacked>li>a {
+	padding: 10px 8px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #4A515B;
+	background: #E9E9E9;
+	background: -moz-linear-gradient(top, #FAFAFA 0%, #E9E9E9 100%);/*Mozilla*/
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FAFAFA),
+		color-stop(100%, #E9E9E9) );/*Old gradient for webkit*/
+	background: -webkit-linear-gradient(top, #FAFAFA 0%, #E9E9E9 100%);/*new gradient for Webkit*/
+	background: -o-linear-gradient(top, #FAFAFA 0%, #E9E9E9 100%);/*Opera11*/
+	background: -ms-linear-gradient(top, #FAFAFA 0%, #E9E9E9 100%);/*IE10*/
+	background: linear-gradient(top, #FAFAFA 0%, #E9E9E9 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA',
+		endColorstr='#E9E9E9' );
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9')";
+	border: 1px solid #D5D5D5;
+	border-radius: 4px;
+}
+
+#main-nav.nav-tabs.nav-stacked>li>a:hover
+	{
+	color: #FFF;
+	background: #3C4049;
+	background: -moz-linear-gradient(top, #4A515B 0%, #3C4049 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4A515B),
+		color-stop(100%, #3C4049) );
+	background: -webkit-linear-gradient(top, #4A515B 0%, #3C4049 100%);
+	background: -o-linear-gradient(top, #4A515B 0%, #3C4049 100%);
+	background: -ms-linear-gradient(top, #4A515B 0%, #3C4049 100%);
+	background: linear-gradient(top, #4A515B 0%, #3C4049 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA',
+		endColorstr='#E9E9E9' );
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9')";
+	border-color: #2B2E33;
+}
+
+#main-nav.nav-tabs.nav-stacked>li {
+	margin-bottom: 4px;
+}
+
+/*定义二级菜单样式*/
+.secondmenu a {
+	font-size: 14px;
+	color: #4A515B;
+	text-align: center;
+}
+
+</style>
+</head>
+
+<body>
+	<div class="row" style="background:#E9E9E9;width:200px;height:100%";margin-right:0;>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul id="main-nav" class="nav nav-tabs nav-stacked" style="width:100%">
+				<li><a href="#" style="font-size: 16px;width: 100%;"> <span
+						class="glyphicon glyphicon-home"></span> &nbsp;&nbsp;<b>主</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>页</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</a>
+				</li>
+
+				<li><a href="#entityMng" class="nav-header collapse"
+					data-toggle="collapse" style="font-size: 16px;width: 100%;"> <span
+						class="glyphicon glyphicon-inbox"></span> &nbsp;&nbsp;<b>监控点管理</b>&nbsp;&nbsp;<b
+						class="caret"></b> </a>
+
+					<ul id="entityMng" class="nav nav-list secondmenu collapse"
+						style="text-align:right">
+						<li><a href="sensorNodeQueryAll?sensorNode.startIndex=0" target="blank" style="font-size: 14px;"><b>监&nbsp;控&nbsp;点&nbsp;列&nbsp;表</b>
+						</a></li>
+						<li class="divider"  style="font-size: 14px;"></li>
+						<li><a href="FrmNodeMng.jsp" target="blank" style="font-size: 14px;"><b>节&nbsp;点&nbsp;列&nbsp;表</b>
+						</a></li>
+						<li class="divider"  style="font-size: 14px;"></li>
+						<li><a href="FrmEntityMntRcd.jsp" target="blank"style="font-size: 14px;"><b>监控点维修记录</b> </a>
+						</li>
+					</ul>
+				</li>
+
+				<li><a href="#dataAly" class="nav-header collapse"
+					data-toggle=collapse style="font-size: 16px;width: 100%;"> <span
+						class="glyphicon glyphicon-stats"></span> &nbsp;&nbsp;<b>数&nbsp;据&nbsp;分&nbsp;析</b>&nbsp;&nbsp;<b
+						class="caret"></b> </a>
+
+					<ul id="dataAly" class="nav nav-list secondmenu collapse"
+						style="text-align:right">
+						<li><a href="#" style="font-size: 14px;"><b>路&nbsp;径&nbsp;选&nbsp;择</b>
+						</a></li>
+						<li class="divider" style="font-size: 14px;"></li>
+						<li><a href="#" style="font-size: 14px;"><b>历&nbsp;史&nbsp;数&nbsp;据</b>
+						</a></li>
+					</ul>
+				</li>
+
+				<li><a href="#userMng" class="nav-header collapse"
+					data-toggle="collapse" style="font-size: 16px;width: 100%;"> <span
+						class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;<b>用&nbsp;户&nbsp;管&nbsp;理</b>&nbsp;&nbsp;<b
+						class="caret"></b> </a>
+
+					<ul id="userMng" class="nav nav-list secondmenu collapse"
+						style="text-align:right">
+						<li><a href="FrmUserInfoMng.jsp" target="blank" style="font-size: 14px;"><b>用户信息管理</b> </a></li>
+						<li class="divider" style="font-size: 14px;"></li>
+						<li><a href="FrmDptMng.jsp" target="blank" style="font-size: 14px;"><b>部&nbsp;门&nbsp;管&nbsp;理</b>
+						</a></li>
+					</ul>
+				</li>
+
+				<li><a href="#sysMng" class="nav-header collapse"
+					data-toggle="collapse" style="font-size: 16px;width: 100%;"> <span
+						class="glyphicon glyphicon-cog"></span> &nbsp;&nbsp;<b>系&nbsp;统&nbsp;管&nbsp;理</b>&nbsp;&nbsp;<b
+						class="caret"></b> </a>
+
+					<ul id="sysMng" class="nav nav-list secondmenu collapse"
+						style="text-align:right">
+						<li><a href="#" style="font-size: 14px;"><b>个人信息修改</b> </a></li>
+						<li class="divider" style="font-size: 14px;"></li>
+						<li><a href="#" style="font-size: 14px;"><b>区&nbsp;域&nbsp;管&nbsp;理</b>
+						</a></li>
+						<li class="divider" style="font-size: 14px;"></li>
+						<li><a href="#" style="font-size: 14px;"><b>权&nbsp;限&nbsp;设&nbsp;置</b>
+						</a></li>
+					</ul>
+				</li>
+
+				<li><a href="#" style="font-size: 16px; width: 100%;"> <span
+						class="glyphicon glyphicon-off"></span> &nbsp;&nbsp;<b>退&nbsp;出&nbsp;系&nbsp;统</b>&nbsp;&nbsp;
+				</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

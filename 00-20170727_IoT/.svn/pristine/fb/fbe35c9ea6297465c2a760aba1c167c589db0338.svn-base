@@ -1,0 +1,144 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>echarts-多柱子柱状图</title>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="jscript/js/echarts.js" ></script>
+    <style>
+     .div-chart,html{
+        width:60%;
+        height: 80%;
+        font-family: "arial, helvetica, sans-serif";
+        font-size: x-large;
+        font-kerning: inherit;
+        font-stretch: expanded;
+      }
+      #manyColumn{
+        width: 100%;
+        height: 100%;
+        font-size: 14px;
+        font-family: "微软雅黑";
+        backface-visibility: visible;
+        background-blend-mode: inherit;
+        background-origin: border-box;
+        background: content-box;
+        background-color: #5BC0DE;
+      }
+    </style>
+    <script>
+      $(function(){
+        buildData();
+      });
+      //生成数据
+      function buildData()
+      {
+        var columLabel = ['清理次数','高温报警次数'];
+        var columName = ['芙蓉区','天心区','岳麓区','雨花区','开福区'];
+        var columnValue = new Array();
+        var arrData = new Array();
+        for(var i=0;i<columLabel.length;i++)
+        {
+          for(var j=0;j<columName.length;j++)
+          {
+            arrData.push(Math.floor(Math.random()*10+10));
+          }
+          console.info(arrData);
+          columnValue.push(eval('(' + ("{'name':'"+columLabel[i]+"','type':'bar','data':["+arrData+"]}") + ')'));
+        }
+        buildChart(columLabel,columName,columnValue);
+      }
+      //生成图形
+      function buildChart(columLabel,columName,columnValue)
+      {
+        var chart = document.getElementById('manyColumn');
+        var echart = echarts.init(chart);
+        var option = {
+        	    title : {
+        	        text : '时间坐标折线图',
+        	        subtext : 'dataZoom支持'
+        	    },
+        	    tooltip : {
+        	        trigger: 'item',
+        	        formatter : function (params) {
+        	            var date = new Date(params.value[0]);
+        	            data = date.getFullYear() + '-'
+        	                   + (date.getMonth() + 1) + '-'
+        	                   + date.getDate() + ' '
+        	                   + date.getHours() + ':'
+        	                   + date.getMinutes();
+        	            return data + '<br/>'
+        	                   + params.value[1] + ', ' 
+        	                   + params.value[2];
+        	        }
+        	    },
+        	    toolbox: {
+        	        show : true,
+        	        feature : {
+        	            mark : {show: true},
+        	            dataView : {show: true, readOnly: false},
+        	            restore : {show: true},
+        	            saveAsImage : {show: true}
+        	        }
+        	    },
+        	    dataZoom: {
+        	        show: true,
+        	        start : 70
+        	    },
+        	    legend : {
+        	        data : ['series1']
+        	    },
+        	    grid: {
+        	        y2: 80
+        	    },
+        	    xAxis : [
+        	        {
+        	            type : 'time',
+        	            splitNumber: 10
+        	        }
+        	    ],
+        	    yAxis : [
+        	        {
+        	            type : 'value'
+        	        }
+        	    ],
+        	    series : [
+        	        {
+        	            name: 'series1',
+        	            type: 'line',
+        	            showAllSymbol: true,
+        	            symbolSize: function (value){
+        	                return Math.round(value[2]/10) + 2;
+        	            },
+        	            data: (function () {
+        	                var d = [];
+        	                var len = 0;
+        	                var now = new Date();
+        	                var value;
+        	                while (len++ < 200) {
+        	                    d.push([
+        	                        new Date(2013, 10, 1, 0, len * 10000),
+        	                        (Math.random()*30).toFixed(2) - 0,
+        	                        (Math.random()*100).toFixed(2) - 0
+        	                    ]);
+        	                }
+        	                return d;
+        	            })()
+        	        }
+        	    ]
+        	};
+        echart.setOption(option);
+      }
+    </script>
+  </head>
+  <body class="div-chart">
+    <div id="manyColumn"></div>
+  </body>
+</html>

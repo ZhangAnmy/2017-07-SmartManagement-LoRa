@@ -1,0 +1,51 @@
+package edu.hnu.csee.luo.service;
+
+import java.util.List;
+
+import edu.hnu.csee.luo.dao.UserDao;
+
+import edu.hnu.csee.luo.model.SensorNode;
+import edu.hnu.csee.luo.model.User;
+import edu.hnu.csee.luo.model.UserInfoChange;
+import edu.hnu.csee.luo.util.BaseUtil;
+
+public class UserManageService {
+
+	public static UserDao userDao = (UserDao) BaseUtil.getBeanAppContext("userDao");
+	public List<User> queryAllUserInfo(User user){
+		
+		return userDao.queryAllUserInfo( user);
+
+	}
+	
+	 public Integer queryUserCount(User user){
+
+			return userDao.queryUserCount(user);
+		}
+	
+	 public List<User> queryUserInfo(User user){
+
+			return userDao.queryUserInfo(user);
+		}
+
+		 public void insertOneUser(User user){
+			
+			userDao.insertOneUser(user);
+		}
+		 
+		 public void deleteUserById(User user){
+
+			userDao.deleteUserById(user);
+		}
+		 
+		 public void updateUserInfo(User user){
+
+			userDao.updateUserInfo(user);
+		}
+		
+		public void editUserInfo(UserInfoChange UserInfoChange) {
+			// TODO Auto-generated method stub
+			userDao.editUserInfo(UserInfoChange);
+		}
+	 
+}

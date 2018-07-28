@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.hnu.csee.luo.dao.MaintainDao" >
+  <resultMap id="BaseResultMap" type="edu.hnu.csee.luo.model.Maintain" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="entityId" property="entityid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="cause" property="cause" jdbcType="VARCHAR" />
+    <result column="recordTime" property="recordtime" jdbcType="VARCHAR" />
+    <result column="maintainTime" property="maintaintime" jdbcType="VARCHAR" />
+    <result column="respMem" property="respmem" jdbcType="VARCHAR" />
+    <result column="respMemTel" property="respmemtel" jdbcType="VARCHAR" />
+    <result column="maintainPeople" property="maintainpeople" jdbcType="VARCHAR" />
+    <result column="maintainMemTel" property="maintainmemtel" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="startIndex" property="startIndex" jdbcType="INTEGER" />
+   	<result column="pageSize" property="pageSize" jdbcType="INTEGER" /> 
+    <association property="user" column="user" javaType="edu.hnu.csee.luo.model.User">
+	   	<id column="userId" property="userId"/>
+	   	<result column="userName" property="userName"/>
+	   	<result column="tel" property="tel"/>
+    </association>
+     <association property="entity" column="entity" javaType="edu.hnu.csee.luo.model.Entity">
+     	<id column="userId" property="userId"/>
+	   	<result column="entityId" property="entityId"/>
+	   	<result column="entityStatus" property="entityStatus"/>
+	   	<result column="entityType" property="entityType"/>
+	   	<result column="area" property="area"/>
+	   	<result column="detailAddress" property="detailAddress"/>
+   </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, entityId, status, userId, cause, recordTime, maintainTime, respMem, respMemTel, 
+    maintainPeople, maintainMemTel, remark
+  </sql>
+  <select id="queryAllMaintainInfo" resultMap="BaseResultMap" parameterType="edu.hnu.csee.luo.model.Maintain" >
+    select 
+ 	m.entityId ,e.entityType,e.detailAddress,m.maintainTime,m.status,m.recordTime,m.cause,e.area,u.userName,u.tel,m.maintainPeople,m.maintainMemTel,m.remark
+	from maintain_info m 
+	left join entity_info e
+	on m.entityId = e.entityId 
+	left join user_info u
+	on e.userId=u.userId
+	<where>  
+	 	<if test="1==1">
+	 		1=1
+	 	</if>
+        <if test="entityid!=null and entityid!= '' ">     
+           and m.entityId = #{entityid}      
+        </if>    
+        <if test="entity!=null and entity.entityType!=null and entity.entityType!='' ">     
+           and e.entityType = #{entity.entityType}      
+        </if>
+        <if test="condition!=null and condition.startTime!=null and condition.startTime!='' and condition.endTime!=null and condition.endTime!='' ">     
+           and m.recordTime between #{condition.startTime} and #{condition.endTime}
+           </if> 
+    </where>  
+   	limit #{paging.begin},#{paging.pageSize}
+</select>
+
+<select id="queryMainInfoCount" parameterType="edu.hnu.csee.luo.model.Maintain"  resultType="java.lang.Integer" >  
+    SELECT 
+ 	count(*)
+ 	FROM maintain_info m
+</select> 
+
+ <insert id="insertOndeMaintainRecord" parameterType="edu.hnu.csee.luo.model.Maintain" >
+    insert into maintain_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="entityid != null" >
+        entityId,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="cause != null" >
+        cause,
+      </if>
+      <if test="recordtime != null" >
+        recordTime,
+      </if>
+      <if test="maintaintime != null" >
+        maintainTime,
+      </if>
+      <if test="respmem != null" >
+        respMem,
+      </if>
+      <if test="respmemtel != null" >
+        respMemTel,
+      </if>
+      <if test="maintainpeople != null" >
+        maintainPeople,
+      </if>
+      <if test="maintainmemtel != null" >
+        maintainMemTel,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entityid != null" >
+        #{entityid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cause != null" >
+        #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="recordtime != null" >
+        #{recordtime,jdbcType=VARCHAR},
+      </if>
+      <if test="maintaintime != null" >
+        #{maintaintime,jdbcType=VARCHAR},
+      </if>
+      <if test="respmem != null" >
+        #{respmem,jdbcType=VARCHAR},
+      </if>
+      <if test="respmemtel != null" >
+        #{respmemtel,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainpeople != null" >
+        #{maintainpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainmemtel != null" >
+        #{maintainmemtel,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="changeMaintainInfo" parameterType="edu.hnu.csee.luo.model.Maintain" >
+    update maintain_info
+    <set >
+      <if test="entityid != null" >
+        entityId = #{entityid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cause != null" >
+        cause = #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="recordtime != null" >
+        recordTime = #{recordtime,jdbcType=VARCHAR},
+      </if>
+      <if test="maintaintime != null" >
+        maintainTime = #{maintaintime,jdbcType=VARCHAR},
+      </if>
+      <if test="respmem != null" >
+        respMem = #{respmem,jdbcType=VARCHAR},
+      </if>
+      <if test="respmemtel != null" >
+        respMemTel = #{respmemtel,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainpeople != null" >
+        maintainPeople = #{maintainpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainmemtel != null" >
+        maintainMemTel = #{maintainmemtel,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where entityId = #{entityid,jdbcType=VARCHAR}
+  </update>
+  
+  <delete id="deleteMainInfoById" parameterType="edu.hnu.csee.luo.model.Maintain" >
+  delete from maintain_info where entityId = #{entityid}
+</delete>
+
+</mapper>

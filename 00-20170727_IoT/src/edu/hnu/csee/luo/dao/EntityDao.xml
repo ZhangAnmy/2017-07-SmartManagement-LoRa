@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.hnu.csee.luo.dao.EntityDao" >
+  <resultMap id="BaseResultMap" type="edu.hnu.csee.luo.model.Entity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="entityId" property="entityId" jdbcType="VARCHAR" />
+    <result column="entityType" property="entityType" jdbcType="VARCHAR" />
+    <result column="entityStatus" property="entityStatus" jdbcType="VARCHAR" />
+    <result column="statusType" property="statusType" jdbcType="VARCHAR" />
+    <result column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="streetAddress" property="streetAddress" jdbcType="VARCHAR" />
+    <result column="detailAddress" property="detailAddress" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <association property="user" column="user" javaType="edu.hnu.csee.luo.model.User">
+	   	<id column="id" property="u_id" jdbcType="INTEGER"/>
+	   	<result column="userId" property="userId"/>
+	   	<result column="userName" property="userName"/>
+	   	<result column="tel" property="tel"/>
+    </association>
+  </resultMap>
+
+  <select id="queryAllEntityInfo" parameterType="edu.hnu.csee.luo.model.Entity" resultMap="BaseResultMap">  
+   	select 
+    e.entityId ,u.userName,u.tel,u.userId,e.entityType,e.entityStatus,e.statusType,e.longitude,e.latitude,
+    e.area,e.streetAddress,e.detailAddress,e.remark
+    FROM entity_info e left join user_info u
+     	ON e.userId = u.userId
+  <where>  
+	 	<if test="1==1">
+	 		1=1
+	 	</if>
+        <if test="entityId!=null and entityId!='' ">     
+           and e.entityId = #{entityId}      
+        </if>    
+         <if test="entityType!=null and entityType!='' ">     
+           and e.entityType = #{entityType}      
+        </if>  
+         <if test="area!=null and area!='' ">     
+           and e.area = #{area}      
+        </if>   
+         <if test="entityStatus!=null and entityStatus!='' ">     
+           and e.entityStatus = #{entityStatus}      
+        </if>          
+    </where>  
+
+ </select>  
+ 
+ 
+   <select id="queryEntityInfo" parameterType="edu.hnu.csee.luo.model.Entity" resultMap="BaseResultMap">  
+   	select 
+    e.entityId ,u.userName,u.tel,u.userId,e.entityType,e.entityStatus,e.statusType,e.longitude,e.latitude,
+    e.area,e.streetAddress,e.detailAddress,e.remark
+    FROM entity_info e left join user_info u
+ 	ON e.userId = u.userId
+ 	<where>  
+	 	<if test="1==1">
+	 		1=1
+	 	</if>
+        <if test="entityId!=null and entityId!='' ">     
+           and e.entityId = #{entityId}      
+        </if>    
+         <if test="entityType!=null and entityType!='' ">     
+           and e.entityType = #{entityType}      
+        </if>  
+         <if test="area!=null and area!='' ">     
+           and e.area = #{area}      
+        </if>   
+         <if test="entityStatus!=null and entityStatus!='' ">     
+           and e.entityStatus = #{entityStatus}      
+        </if>          
+    </where>  
+   	limit #{paging.begin},#{paging.pageSize}
+ </select> 
+  
+  
+  <select id="queryEntityCount" parameterType="edu.hnu.csee.luo.model.Entity" resultType="java.lang.Integer">  
+   	select 
+  	 count(e.entityId)
+    FROM entity_info e left join user_info u
+ 	ON e.userId = u.userId
+ </select>  
+  
+  	<select id="queryEntityInfoById" resultMap="BaseResultMap">
+		select
+		e.entityId,u.userName,u.tel,u.userId,e.entityType,e.entityStatus,e.statusType,
+		e.area,e.streetAddress,e.detailAddress,e.remark
+		FROM entity_info e left
+		join user_info u
+		ON e.userId = u.userId where e.entityId=#{entityId}
+	</select>
+
+  
+   <insert id="insertOneEntity" parameterType="edu.hnu.csee.luo.model.Entity" >
+    insert into entity_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="entityId != null" >
+        entityId,
+      </if>
+      <if test="entityType != null" >
+        entityType,
+      </if>
+      <if test="entityStatus != null" >
+        entityStatus,
+      </if>
+      <if test="statusType != null" >
+        statusType,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="streetAddress != null" >
+        streetAddress,
+      </if>
+      <if test="detailAddress != null" >
+        detailAddress,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entityId != null" >
+        #{entityId,jdbcType=VARCHAR},
+      </if>
+      <if test="entityType != null" >
+        #{entityType,jdbcType=VARCHAR},
+      </if>
+      <if test="entityStatus != null" >
+        #{entityStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="statusType != null" >
+        #{statusType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="streetAddress != null" >
+        #{streetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null" >
+        #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+<update id="updateEntityInfo" parameterType="edu.hnu.csee.luo.model.Entity" >
+    update entity_info
+    <set >
+    
+      <if test="entityType != null" >
+        entityType = #{entityType,jdbcType=VARCHAR},
+      </if>
+      <if test="entityStatus != null" >
+        entityStatus = #{entityStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="statusType != null" >
+        statusType = #{statusType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="streetAddress != null" >
+        streetAddress = #{streetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null" >
+        detailAddress = #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where entityId = #{entityId,jdbcType=INTEGER}
+  </update> 
+  
+  <delete id="deleteEntityById" parameterType="edu.hnu.csee.luo.model.Entity" >
+  delete from entity_info where entityId = #{entityId}
+</delete>
+</mapper>

@@ -1,0 +1,204 @@
+
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld " %>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title></title>
+	
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<link href="res/mistake.css" type="text/css" rel="stylesheet">
+	<link href="res/bootstrap.min.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="res/jquery-3.2.1.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<%
+  String path = request.getContextPath();
+  String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+  request.setAttribute("message", "000");
+%>
+
+<style>
+.div-a{ position:absolute;  right:150px; top:80px; width:80%; height:700px ;} 
+.div-b{ position:absolute;  right:2px; top:80px; background:#f1f1f1; width:140px; height:200px;display:none;} 
+.div-C{ position:absolute;  right:2px; top:80px; background:#f1f1f1; width:140px; height:200px} 
+</style>
+  
+<script type="text/javascript">
+ 
+  $(function () {
+ //alert($(window).height());
+ $('#addnode').click(function () {
+	 $('#div1').show();
+ });
+});
+
+ 
+  function submitForm(frm)
+	{
+
+		frm.submit();
+		
+	}
+  function  canceladd(){
+	  
+	  alert("取消成功");
+
+  }
+  
+  
+  
+  //异步删除
+  
+    $(function () {
+ //alert($(window).height());
+ $('#deletenode').click(function () {
+	 // 删除  
+                $.ajax({  
+                    type : "POST",  //提交方式  
+                    url : "${pageContext.request.contextPath}/sensorNodeDelete.action",//路径  
+                    data : {  
+                        "sensorNode.sensorId" : "${sensorNode.sensorId}"  
+                    },//数据，这里使用的是Json格式进行传输  
+                    success : function(result) {//返回数据根据结果进行相应的处理  
+                        if ( result.success ) {  
+                           alert("成功");
+                           
+                        } else {  
+                                alert("失败");
+                        }  
+                    }  
+                });  
+ });      
+
+ </script>
+
+<body bgcolor="#f1f1f1" >
+	<div id = "div1" class="div-b" >
+		<form role="form" method="POST" action='addSensorNode1'>
+			<div class="form-group">
+			 <s:textfield name="sensorNode.id" class="form-control input-sm" type="text" placeholder="序列号"  style="width:140px" maxlength="14" />
+			</div>
+			<div class="form-group">
+			 <s:textfield name="sensorNode.machineId" class="form-control input-sm" type="text" placeholder="机器号"  style="width:140px" maxlength="14" />
+			</div>  
+			<div class="form-group">     
+			  <s:select class="form-control input-sm"  name="sensorNode.sensorType" style="width:140px" headerValue="选择传感器类型"  list="#{'1':'倾角','2':'水位','3':'满溢','4':'其他'}"/> 
+			</div>
+			<div>
+				<input type="button" value="确定" class="btn btn-default btn-sm"  onclick="submitForm(this.form)" />
+				<input type="button" value="取消" class="btn btn-default btn-sm"  onclick="canceladd()" />
+			</div>
+		</form>
+	</div>
+				
+
+	<div id = "div2" class="div-a">
+		<div >
+		<!-- 信息警告消息的上下文按钮 -->
+		  <button type="button" class="btn btn-default btn-sm"  id="addnode">新增</button>
+		  <button type="button" class="btn btn-default btn-sm" id = "editnode">修改</button>
+		  <button type="button" class="btn btn-default btn-sm" id="deletenode">删除</button>
+		</div>
+		<div>
+			<table  class="table table-striped" cellspacing="0" cellpadding="0" >
+				<tr>
+					<td >
+						 操作
+					</td>
+					<td>
+						id
+					</td>
+					<td>
+						节点Id
+					</td>
+					<td>
+						传感器类型
+					</td>
+					<td>
+						监控点		
+					</td>
+					<td>
+						状态		
+					</td>
+					<td>
+						位置		
+					</td>
+					<td>
+						安装时间
+					</td>
+					<td>
+						备注
+					</td>
+					<td>
+						查看
+					</td>
+					<td>
+						操作				
+					</td>
+					<td>
+				</tr>
+				
+				<s:iterator id="sn" value="sensorNodeList">
+
+				<tr>
+					<td>
+						 <label class="checkbox-inline">
+						    <input type="radio" name="sensorNode。sensorId" id="optionsRadios3" value="#sn.id" checked/>
+						  </label>
+					</td>
+					<td >
+						<s:property value ="#sn.id"/>
+					
+					</td>
+					<td>
+				
+						<s:property value ="#sn.sensorId"/>
+					</td>
+					<td>
+					
+					<s:property value ="#sn.sensorType"/>
+					</td>
+					
+					
+					<td>
+					<s:property value ="#sn.entity.entityId"/>
+					</td>
+					
+					<td>
+					<s:property value ="#sn.entity.entityStatus"/>
+					</td>
+					
+					<td>
+					<s:property value ="#sn.entity.area"/>
+					</td>
+						<td>
+					
+					<s:property value ="#sn.setTime"/>
+					</td>
+					<td>
+				
+					<s:property value ="#sn.remark"/>
+					</td>
+					<td>
+						 <a href="pielist.jsp" target = "frmfootBar">查看</a>
+					</td>
+					<td>
+						
+						
+					</td>
+				</tr>
+				</s:iterator>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

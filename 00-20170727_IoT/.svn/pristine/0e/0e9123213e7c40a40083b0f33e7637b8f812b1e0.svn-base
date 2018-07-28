@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.hnu.csee.luo.dao.NodeCollectDataDao" >
+  <resultMap id="BaseResultMap" type="edu.hnu.csee.luo.model.NodeCollectData" >
+     <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sensorId" property="sensorid" jdbcType="VARCHAR" />
+    <result column="entityType" property="entityType" jdbcType="VARCHAR"/>
+    <result column="area" property="area" jdbcType="VARCHAR"/>
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="value1" property="value1" jdbcType="DECIMAL" />
+    <result column="value2" property="value2" jdbcType="DECIMAL" />
+    <result column="value3" property="value3" jdbcType="DECIMAL" />
+    <result column="recordTime" property="recordtime" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    
+  </resultMap>
+ 
+  <select id="queryAllNodeCollectDataRecord" resultMap="BaseResultMap" parameterType="edu.hnu.csee.luo.model.NodeCollectData" >
+		select sensorId ,sensorType,status,recordTime,value1,value2,value3	
+		from sensor_col 
+		ORDER BY recordTime
+  </select>
+  
+  <select id="queryNodeCollectDataRecordByCondition" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+		select sensorId ,sensorType,status,recordTime,value1,value2,value3	
+		from sensor_col 
+		ORDER BY recordTime
+  </select>
+  
+  
+  
+  <!-- 
+  查询监控点的历史数据
+   -->
+  <select id="queryNodeCollectData" resultMap="BaseResultMap" parameterType="edu.hnu.csee.luo.model.NodeCollectData" >
+		select * from sensor_col sc where sc.sensorId in
+		(SELECT si.sensorId FROM sensor_info si  
+		  <where>  
+		 	<if test="1==1">
+		 		1=1
+		 	</if>
+	        <if test="entityId!=null and entityId!='' ">     
+	           and si.entityId = #{entityId}      
+	        </if>    
+    	</where> 
+		)
+		<!--and sc.recordTime &lt;= #{condition.startTime} and  recordTime &gt;= #{condition.endTime}
+     	ORDER BY recordTime DESC-->
+  </select>
+  <!--缺数据 暂时不用 
+    sc where sc.sensorId in
+(SELECT si.sensorId FROM sensor_info si  
+        <if test="entityId!=null and entityId!='' ">     
+           and si.entityId = #{entityId}      
+        </if>       
+)
+and sc.recordTime &lt;= #{condition.startTime} and  sc.recordTime &gt;= #{condition.endTime}
+   -->
+   <!-- 
+   
+   查询某个监控点最近的数据
+    -->
+    <select id="queryRecentNodeCollectData" resultMap="BaseResultMap" parameterType="edu.hnu.csee.luo.model.NodeCollectData" >
+		select * from sensor_col sc where sc.sensorId in
+		(SELECT si.sensorId FROM sensor_info si  
+		<where>  
+		 	<if test="1==1">
+		 		1=1
+		 	</if>
+	        <if test="entityId!=null and entityId!='' ">     
+	           and si.entityId = #{entityId}      
+	        </if>    
+    	</where>  
+		)
+		and sc.recordTime &lt;= #{condition.startTime} and  recordTime &gt;= #{condition.endTime}
+     	ORDER BY recordTime DESC
+  </select>
+  
+  <!-- 查询不同区域对应监控点类型的不同状态对应个数 -->
+	  <select id="queryNodeCollectDataCount" resultType="java.lang.Integer" parameterType="edu.hnu.csee.luo.model.NodeCollectData" >
+		select count(*) from MAINTAIN_INFO mi where mi.entityId in 
+		(SELECT ei.entityId from ENTITY_INFO ei  
+			<where>  
+			 	<if test="1==1">
+			 		1=1
+			 	</if>
+		        <if test="area!=null and area!='' ">     
+		           and ei.area = #{area}      
+		        </if>
+		        <if test="entityType!=null and entityType!='' ">     
+		           and ei.entityType = #{entityType}      
+		        </if>   
+		    </where>  
+		)
+		<if test="status!=null and status!='' ">     
+           and mi.status = #{status}   
+        </if>
+	  </select>
+	  
+  <select id="queryNodeCollectDataDesc" resultMap="BaseResultMap" parameterType="edu.hnu.csee.luo.model.NodeCollectData" >
+		select * from sensor_col sc where sc.sensorId in
+		(SELECT si.sensorId FROM sensor_info si  
+		  <where>  
+		 	<if test="1==1">
+		 		1=1
+		 	</if>
+	        <if test="entityId!=null and entityId!='' ">     
+	           and si.entityId = #{entityId}      
+	        </if>    
+    	</where> 
+		)
+		ORDER BY recordTime DESC
+  </select>
+  
+  <!--  <select id="queryNodeCollectDataCount" resultType="java.lang.Integer" parameterType="edu.hnu.csee.luo.model.NodeCollectData" >
+		select count(*)
+	from sensor_col sc where sc.sensorId in
+	(SELECT si.sensorId FROM sensor_info si  
+	<where>  
+	 	<if test="1==1">
+	 		1=1
+	 	</if>
+        <if test="entityId!=null and entityId!='' ">     
+           and si.entityId = #{entityId}      
+        </if>   
+    </where>  
+	)
+  </select>-->
+  
+    <select id="queryHistoryDataCount" resultType="java.lang.Integer" parameterType="edu.hnu.csee.luo.model.NodeCollectData" >
+		select count(*) from sensor_col sc where sc.sensorId
+		in
+		(select si.sensorId from sensor_info si where si.entityId
+			in
+			(SELECT ei.entityId FROM entity_info ei  where ei.area = #{entity.area}))
+       		 and sc.recordTime &lt;= #{condition.startTime} and  recordTime &gt;= #{condition.endTime}
+         <if test="status!=null and status!='' ">     
+           and sc.status = #{status}   
+        </if>   
+  </select>
+  
+</mapper>

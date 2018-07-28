@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.hnu.csee.luo.dao.TreeDao" >
+  <resultMap id="BaseResultMap" type="edu.hnu.csee.luo.model.Tree" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="entityId" property="entityId" jdbcType="VARCHAR" />
+    <result column="treeName" property="treeName" jdbcType="VARCHAR" />
+    <result column="treeType" property="treeType" jdbcType="VARCHAR" />
+    <result column="treeYears" property="treeYears" jdbcType="INTEGER" />
+    <result column="treeHeight" property="treeHeight" jdbcType="DECIMAL" />
+    <result column="treeDemeter" property="treeDemeter" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+
+	<select id="queryTreeInfoById" resultMap="BaseResultMap">
+		select
+		entityId, treeName, treeType, treeYears, treeHeight, treeDemeter,remark
+		FROM tree_info where entityId=#{entityId}
+	</select>
+	
+<!--   <select id="queryAllTreeInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tree_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteTreeById" parameterType="java.lang.Integer" >
+    delete from tree_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="updateTreeInfo" parameterType="edu.hnu.csee.luo.model.Tree" >
+    insert into tree_info (id, entityId, treeName, 
+      treeType, treeYears, treeHeight, 
+      treeDemeter, remark)
+    values (#{id,jdbcType=INTEGER}, #{entityid,jdbcType=VARCHAR}, #{treename,jdbcType=VARCHAR}, 
+      #{treetype,jdbcType=VARCHAR}, #{treeyears,jdbcType=INTEGER}, #{treeheight,jdbcType=DECIMAL}, 
+      #{treedemeter,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertOneTree" parameterType="edu.hnu.csee.luo.model.Tree" >
+    insert into tree_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="entityid != null" >
+        entityId,
+      </if>
+      <if test="treename != null" >
+        treeName,
+      </if>
+      <if test="treetype != null" >
+        treeType,
+      </if>
+      <if test="treeyears != null" >
+        treeYears,
+      </if>
+      <if test="treeheight != null" >
+        treeHeight,
+      </if>
+      <if test="treedemeter != null" >
+        treeDemeter,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entityid != null" >
+        #{entityid,jdbcType=VARCHAR},
+      </if>
+      <if test="treename != null" >
+        #{treename,jdbcType=VARCHAR},
+      </if>
+      <if test="treetype != null" >
+        #{treetype,jdbcType=VARCHAR},
+      </if>
+      <if test="treeyears != null" >
+        #{treeyears,jdbcType=INTEGER},
+      </if>
+      <if test="treeheight != null" >
+        #{treeheight,jdbcType=DECIMAL},
+      </if>
+      <if test="treedemeter != null" >
+        #{treedemeter,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hnu.csee.luo.model.Tree" >
+    update tree_info
+    <set >
+      <if test="entityid != null" >
+        entityId = #{entityid,jdbcType=VARCHAR},
+      </if>
+      <if test="treename != null" >
+        treeName = #{treename,jdbcType=VARCHAR},
+      </if>
+      <if test="treetype != null" >
+        treeType = #{treetype,jdbcType=VARCHAR},
+      </if>
+      <if test="treeyears != null" >
+        treeYears = #{treeyears,jdbcType=INTEGER},
+      </if>
+      <if test="treeheight != null" >
+        treeHeight = #{treeheight,jdbcType=DECIMAL},
+      </if>
+      <if test="treedemeter != null" >
+        treeDemeter = #{treedemeter,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hnu.csee.luo.model.Tree" >
+    update tree_info
+    set entityId = #{entityid,jdbcType=VARCHAR},
+      treeName = #{treename,jdbcType=VARCHAR},
+      treeType = #{treetype,jdbcType=VARCHAR},
+      treeYears = #{treeyears,jdbcType=INTEGER},
+      treeHeight = #{treeheight,jdbcType=DECIMAL},
+      treeDemeter = #{treedemeter,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update> -->
+</mapper>
